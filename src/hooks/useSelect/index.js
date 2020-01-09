@@ -53,9 +53,8 @@ function useSelect(userProps = {}) {
   // Reducer init.
   const [
     {isOpen, highlightedIndex, selectedItem, keysSoFar},
-    dispatchWithoutProps,
+    dispatch,
   ] = useEnhancedReducer(downshiftSelectReducer, initialState, props)
-  const dispatch = action => dispatchWithoutProps({props, ...action})
 
   // IDs generation.
   const {labelId, getItemId, menuId, toggleButtonId} = getElementIds(
