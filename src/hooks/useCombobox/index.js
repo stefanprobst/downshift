@@ -59,9 +59,9 @@ function useCombobox(userProps = {}) {
   /* Refs */
   const menuRef = useRef(null)
   const itemRefs = useRef()
+  itemRefs.current = []
   const inputRef = useRef(null)
   const toggleButtonRef = useRef(null)
-  itemRefs.current = []
   const shouldScroll = useRef(true)
   const isInitialMount = useRef(true)
 
@@ -237,7 +237,7 @@ function useCombobox(userProps = {}) {
     })
   }
 
-  // returns
+  // Getter props.
   const getLabelProps = labelProps => ({
     id: labelId,
     htmlFor: inputId,

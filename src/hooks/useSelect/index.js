@@ -71,7 +71,7 @@ function useSelect(userProps = {}) {
   const shouldScroll = useRef(true)
   const clearTimeout = useRef(null)
 
-  /* Effects */
+  // Effects.
   /* Sets a11y status message on changes in isOpen. */
   useEffect(() => {
     if (isInitialMount.current) {
@@ -159,7 +159,7 @@ function useSelect(userProps = {}) {
 
   const getItemNodeFromIndex = index => itemRefs.current[index]
 
-  /* Event handler functions */
+  // Event handler functions.
   const menuKeyDownHandlers = {
     ArrowDown(event) {
       event.preventDefault()
