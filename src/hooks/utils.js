@@ -99,23 +99,6 @@ function useEnhancedReducer(reducer, initialState, props) {
 }
 
 /**
- * Checks if nextElement receives focus after the blur event.
- *
- * @param {FocusEvent} event The blur event.
- * @param {Element} nextElement The element to check that receive focus next.
- * @returns {boolean} If the focus lands on nextElement.
- */
-function focusLandsOnElement(event, nextElement) {
-  return (
-    !!nextElement &&
-    (event.relatedTarget === nextElement ||
-      // https://github.com/downshift-js/downshift/issues/832 - workaround for Firefox.
-      (event.nativeEvent &&
-        (nextElement === event.nativeEvent.explicitOriginalTarget ||
-          nextElement.contains(event.nativeEvent.explicitOriginalTarget))))
-  )
-}
-/**
  * Default state reducer that returns the changes.
  *
  * @param {Object} s state.
@@ -256,7 +239,6 @@ export {
   isAcceptedCharacterKey,
   useEnhancedReducer,
   capitalizeString,
-  focusLandsOnElement,
   defaultProps,
   getDefaultValue,
   getInitialValue,
