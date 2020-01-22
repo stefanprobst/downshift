@@ -35,11 +35,11 @@
     "gzipped": 11539,
     "treeshaked": {
       "rollup": {
-        "code": 1752,
-        "import_statements": 318
+        "code": 1751,
+        "import_statements": 317
       },
       "webpack": {
-        "code": 3837
+        "code": 3838
       }
     }
   },
@@ -49,11 +49,11 @@
     "gzipped": 11642,
     "treeshaked": {
       "rollup": {
-        "code": 1751,
-        "import_statements": 317
+        "code": 1752,
+        "import_statements": 318
       },
       "webpack": {
-        "code": 3838
+        "code": 3837
       }
     }
   }
