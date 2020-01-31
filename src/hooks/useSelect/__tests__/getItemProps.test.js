@@ -44,12 +44,12 @@ describe('getItemProps', () => {
       )
     })
 
-    test('do not assign aria-selected if item is not highlighted', () => {
-      const {result} = renderUseSelect({highlightedIndex: 1})
+    test("assign 'false' to aria-selected if item is highlighted", () => {
+      const {result} = renderUseSelect({highlightedIndex: 2})
 
-      expect(
-        result.current.getItemProps({index: 2})['aria-selected'],
-      ).toBeUndefined()
+      expect(result.current.getItemProps({index: 3})['aria-selected']).toEqual(
+        'false',
+      )
     })
 
     test('omit event handlers when disabled', () => {
@@ -182,14 +182,15 @@ describe('getItemProps', () => {
           'aria-activedescendant',
           defaultIds.getItemId(previousIndex),
         )
-        expect(getItemAtIndex(previousIndex)).not.toHaveAttribute(
+        expect(getItemAtIndex(previousIndex)).toHaveAttribute(
           'aria-selected',
+          'false',
         )
         expect(toggleButton).toHaveAttribute(
           'aria-activedescendant',
           defaultIds.getItemId(index),
         )
-        expect(getItemAtIndex(index)).toHaveAttribute('aria-selected')
+        expect(getItemAtIndex(index)).toHaveAttribute('aria-selected', 'true')
       })
 
       it('keeps highlight on multiple events', () => {

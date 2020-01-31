@@ -407,7 +407,7 @@ function useSelect(userProps = {}) {
     }
     const itemProps = {
       role: 'option',
-      ...(itemIndex === highlightedIndex && {'aria-selected': 'true'}),
+      'aria-selected': `${itemIndex === highlightedIndex}`,
       id: elementIds.current.getItemId(itemIndex),
       ...rest,
     }

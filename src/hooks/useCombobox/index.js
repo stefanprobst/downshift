@@ -170,7 +170,7 @@ function useCombobox(userProps = {}) {
         !mouseAndTouchTrackers.current.isTouchMove &&
         !targetWithinDownshift(
           event.target,
-          [comboboxRef.current, menuRef.current, toggleButtonRef],
+          [comboboxRef.current, menuRef.current, toggleButtonRef.current],
           environment.document,
           false,
         )
@@ -343,7 +343,7 @@ function useCombobox(userProps = {}) {
         }
       }),
       role: 'option',
-      'aria-selected': itemIndex === highlightedIndex,
+      'aria-selected': `${itemIndex === highlightedIndex}`,
       id: elementIds.current.getItemId(itemIndex),
       ...(!rest.disabled && {
         onMouseMove: callAllEventHandlers(onMouseMove, () => {
