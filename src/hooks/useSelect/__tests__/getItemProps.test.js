@@ -153,15 +153,13 @@ describe('getItemProps', () => {
     describe('on mouse over', () => {
       test('it highlights the item', () => {
         const index = 1
-        const {
-          mouseMoveItemAtIndex,
-          toggleButton,
-          getItemAtIndex,
-        } = renderSelect({isOpen: true})
+        const {mouseMoveItemAtIndex, menu, getItemAtIndex} = renderSelect({
+          isOpen: true,
+        })
 
         mouseMoveItemAtIndex(index)
 
-        expect(toggleButton.getAttribute('aria-activedescendant')).toBe(
+        expect(menu.getAttribute('aria-activedescendant')).toBe(
           defaultIds.getItemId(index),
         )
         expect(getItemAtIndex(index)).toHaveAttribute('aria-selected', 'true')
@@ -170,15 +168,14 @@ describe('getItemProps', () => {
       test('it removes highlight from the previously highlighted item', () => {
         const index = 1
         const previousIndex = 2
-        const {
-          mouseMoveItemAtIndex,
-          toggleButton,
-          getItemAtIndex,
-        } = renderSelect({isOpen: true, initialHighlightedIndex: previousIndex})
+        const {mouseMoveItemAtIndex, menu, getItemAtIndex} = renderSelect({
+          isOpen: true,
+          initialHighlightedIndex: previousIndex,
+        })
 
         mouseMoveItemAtIndex(index)
 
-        expect(toggleButton).not.toHaveAttribute(
+        expect(menu).not.toHaveAttribute(
           'aria-activedescendant',
           defaultIds.getItemId(previousIndex),
         )
@@ -186,7 +183,7 @@ describe('getItemProps', () => {
           'aria-selected',
           'false',
         )
-        expect(toggleButton).toHaveAttribute(
+        expect(menu).toHaveAttribute(
           'aria-activedescendant',
           defaultIds.getItemId(index),
         )
@@ -195,17 +192,15 @@ describe('getItemProps', () => {
 
       it('keeps highlight on multiple events', () => {
         const index = 1
-        const {
-          mouseMoveItemAtIndex,
-          toggleButton,
-          getItemAtIndex,
-        } = renderSelect({isOpen: true})
+        const {mouseMoveItemAtIndex, menu, getItemAtIndex} = renderSelect({
+          isOpen: true,
+        })
 
         mouseMoveItemAtIndex(index)
         mouseMoveItemAtIndex(index)
         mouseMoveItemAtIndex(index)
 
-        expect(toggleButton).toHaveAttribute(
+        expect(menu).toHaveAttribute(
           'aria-activedescendant',
           defaultIds.getItemId(index),
         )
@@ -228,16 +223,18 @@ describe('getItemProps', () => {
 
       test('it selects the item and resets to user defined defaults', () => {
         const index = 1
-        const {clickOnItemAtIndex, toggleButton, getItems} = renderSelect({
-          defaultIsOpen: true,
-          defaultHighlightedIndex: 2,
-        })
+        const {clickOnItemAtIndex, menu, toggleButton, getItems} = renderSelect(
+          {
+            defaultIsOpen: true,
+            defaultHighlightedIndex: 2,
+          },
+        )
 
         clickOnItemAtIndex(index)
 
         expect(toggleButton).toHaveTextContent(items[index])
         expect(getItems()).toHaveLength(items.length)
-        expect(toggleButton).toHaveAttribute(
+        expect(menu).toHaveAttribute(
           'aria-activedescendant',
           defaultIds.getItemId(2),
         )
@@ -248,12 +245,12 @@ describe('getItemProps', () => {
   describe('scrolling', () => {
     test('is performed by the menu to the item if highlighted and not 100% visible', () => {
       const scrollIntoView = jest.fn()
-      const {keyDownOnToggleButton} = renderSelect({
+      const {keyDownOnMenu} = renderSelect({
         initialIsOpen: true,
         scrollIntoView,
       })
 
-      keyDownOnToggleButton('End')
+      keyDownOnMenu('End')
 
       expect(scrollIntoView).toHaveBeenCalledTimes(1)
     })
